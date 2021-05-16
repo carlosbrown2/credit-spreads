@@ -110,12 +110,15 @@ class CallSpread(OptionClass):
 
 if __name__ == '__main__':
     st.title('Options Put Credit Spread')
-    price = st.number_input(label='Enter Stock Price', min_value=0)
-    sigma = st.slider(label='Stock Sigma (std. dev)', min_value=1, max_value=100, value=5)
-    short = st.number_input(label='Short Strike Price', min_value=0)
-    long = st.number_input(label='Long Strike Price', min_value=0)
-    credit = st.number_input(label='Credit (total', min_value=0)
-    principal = st.number_input(label='Liquid Principal: ', min_value=0)
+    st.write('Default values are provided. Please update each field with the specifics of your trade.')
+    st.header('Stock and Account Info')
+    price = st.number_input(label='Stock Price', min_value=0., step=0.01, value=98.)
+    sigma = st.slider(label='Stock Sigma (std. dev.)', min_value=0.1, max_value=100., value=5., step=0.1)
+    principal = st.number_input(label='Liquid Principal: ', min_value=2000)
+    st.header('Credit Spread Info')
+    short = st.number_input(label='Short Strike Price', min_value=0., step=0.01, value=95.)
+    long = st.number_input(label='Long Strike Price', min_value=0., step=0.01, value=93.)
+    credit = st.number_input(label='Credit (Total)', min_value=0., step=0.1, value=55.)
 
     puttrade = PutSpread(principal=principal, stockprice=price, sigma=sigma, numTrades=100000, shortstrike=short, longstrike=long, credit=credit)
     puttrade.simulateTrades()
