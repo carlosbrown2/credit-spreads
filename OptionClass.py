@@ -145,7 +145,6 @@ class CallSpread(OptionClass):
 
 
 if __name__ == '__main__':
-    '''Streamlit App Implementation'''
     st.title('Options Put Credit Spread')
     st.write('Default values are provided. Please update each field with the specifics of your trade.')
     st.header('Stock and Account Info')
