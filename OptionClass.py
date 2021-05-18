@@ -145,8 +145,9 @@ class CallSpread(OptionClass):
 
 
 if __name__ == '__main__':
-    st.title('Options Put Credit Spread')
-    st.write('Default values are provided. Please update each field with the specifics of your trade.')
+    st.title('Options Credit Spread Trading')
+    st.write('This app is a basic options trading calculator. Use it to assist in trading vertical credit spreads.')
+    st.write('Default values of inputs are provided. Please update each field with the specifics of your potential trade.')
     st.header('Stock and Account Info')
 
     price = st.number_input(label='Stock Price', min_value=0., step=0.01, value=98.)
@@ -186,3 +187,9 @@ if __name__ == '__main__':
         st.write('Actual Allocation: ', allocation, '%')
         st.write('Kelly Allocation: ', kelly, '%')
         st.markdown(f'Trade Recommendation: **{trade_recommendation}**')
+    st.write('\n')
+    st.write('\n')
+    st.markdown('**Note:** This app is a tool, not investment advice. \
+        User assumes any risk from trading activities. Care has been taken \
+        to make the calculations correct, and since it is open source, the \
+        user is welcome to check it themselves [here](https://github.com/carlosbrown2/credit-spreads)')
