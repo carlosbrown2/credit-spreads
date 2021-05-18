@@ -34,12 +34,12 @@ class OptionClass(metaclass=abc.ABCMeta):
     def makeTrade(self, trade):
         '''Concrete Implementation must be provided by child class'''
         raise NotImplementedError
-    
 
-    @abc.abstractmethod
+
     def calculateKelly(self):
-        '''Concrete Implementation must be provided by child class'''
-        raise NotImplementedError
+        '''Calculate the kelly criterion allocation'''
+        kelly = (self.pop*(self.odds+1) - 1) / self.odds
+        return kelly
 
 
     def calculateEV(self):
@@ -76,12 +76,6 @@ class PutSpread(OptionClass):
         self.maxloss = (self.shortstrike-self.longstrike-self.credit/(100*self.lots))*100*self.lots
         # Kelly odds
         self.odds = (0.5 * self.credit * self.p1 + self.credit *  self.p2)/(0.5 * self.maxloss * self.q1 + self.maxloss * self.q2)
-
-
-    def calculateKelly(self):
-        '''Calculate the kelly criterion allocation'''
-        kelly = (self.pop*(self.odds+1) - 1) / self.odds
-        return kelly
 
 
     def makeTrade(self, trade):
@@ -124,12 +118,6 @@ class CallSpread(OptionClass):
         self.maxloss = (self.longstrike-self.shortstrike-self.credit/(100*self.lots))*100*self.lots
         # Kelly odds
         self.odds = (0.5 * self.credit * self.p1 + self.credit *  self.p2)/(0.5 * self.maxloss * self.q1 + self.maxloss * self.q2)
-
-
-    def calculateKelly(self):
-        '''Calculate the kelly criterion allocation'''
-        kelly = (self.pop*(self.odds+1) - 1) / self.odds
-        return kelly
 
 
     def makeTrade(self, trade):
@@ -192,4 +180,4 @@ if __name__ == '__main__':
     st.markdown('**Note:** This app is a tool, not investment advice. \
         User assumes any risk from trading activities. Care has been taken \
         to make the calculations correct, and since it is open source, the \
-        user is welcome to check it themselves [here](https://github.com/carlosbrown2/credit-spreads)')
+        user is welcome to check the code themselves [here](https://github.com/carlosbrown2/credit-spreads)')
